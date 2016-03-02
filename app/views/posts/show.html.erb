@@ -1,0 +1,58 @@
+<div class="ui segment">
+
+		<div class="panel panel-default">
+		<table class="ui table">
+			<thead>
+				<tr>
+					<td colspan="3"><center><b><h1><%= @post.title%></h1></b></center></td>
+				</tr>
+
+				<tr>
+					<td colspan="3"><b><%= @post.category.name%></b></td>
+				</tr>
+
+				<tr>
+					<td colspan="3"><%= @post.date_posted%></td>
+				</tr>
+
+				<tr>
+					<td colspan="3"><p text-align="justified"><%= @post.content%><p></td>
+				</tr>
+
+				<tr>
+					<td colspan="3"><%= link_to 'Comment', new_post_comment_path(@post) %>
+					</td>
+				</tr>
+				<tr>
+					<td><center><b>Comment</b></center></td>
+					<td><center><b>Date Posted</b></center></td>
+					<td><center><b>Actions</b></center></td>
+				</tr>
+			</thead>
+
+
+			<tbody>
+				        <% @comments.each do |comment| %>
+          <tr>
+          	<td><%= comment.user_comment %></td>
+            <td><%= comment.date_posted %></td>
+            <td>
+              <% if (comment.user == current_user) %>
+                  <%= link_to 'SHOW', post_comment_path(comment.post, comment) %>|
+                  <%= link_to 'EDIT', edit_post_comment_path(comment.post, comment) %>|
+                  <%= link_to 'DELETE', [comment.post, comment], :confirm => 'Are you sure?', :method => :delete%>
+                  <% else %>
+              <%= link_to 'SHOW', [comment.post, comment] %>
+              <%end %>
+            </td>
+          </tr>
+        <% end %>
+			</tbody>
+			</tbody>
+
+		</table>
+
+
+		</div>
+
+</div>

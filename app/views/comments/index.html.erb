@@ -1,0 +1,38 @@
+<div class="ui segment">
+    <center><h1>Comments Lists</h1></center>
+
+<%= link_to 'New Comment', new_post_comment_path, class: "ui basic button" %>
+
+        <div class="panel panel-default">
+    <table class="ui selectable celled table">
+
+      <thead>
+        <tr>
+          <th>Date Posted</th>
+          <th>Content</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @comments.each do |comment| %>
+          <tr>
+            <td><%= comment.date_posted %></td>
+            <td><%= comment.user_comment %></td>
+            <td>
+              <% if (comment.user == current_user) %>
+                  <%= link_to 'SHOW', [comment.post, comment] %>|
+                  <%= link_to 'EDIT', edit_post_comment_path(comment.post, comment) %>|
+                  <%= link_to 'DELETE', [comment.post, comment], :confirm => 'Are you sure?', :method => :delete %>
+                  <% else %>
+              <%= link_to 'SHOW', [comment.post, comment] %>
+              <%end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+
+    </table>
+
+    </div>
+
+</div>

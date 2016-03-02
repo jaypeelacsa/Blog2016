@@ -1,0 +1,55 @@
+<div class="ui segment">
+
+		<div class="panel panel-default">
+		<table class="ui table">
+			<thead>
+
+				<tr>
+					<td colspan="3"><b>COMMENT:<%= @comment.user_comment %></b></td>
+				</tr>
+
+				<tr>
+					<td colspan="3"><%= @comment.date_posted %></td>
+				</tr>
+
+				<tr>
+					<td><%= link_to 'Back', post_comments_path(@comment.post) %>|<%= link_to 'Reply', new_comment_reply_path(@comment) %></td>
+				</tr>
+
+				<tr>
+
+					<td>Reply</td>
+					<td>Date Posted</td>
+					<td>Actions</td>
+				</tr>
+
+			</thead>
+
+
+			<tbody>
+			 <% @replies.each do |r| %>
+          <tr>
+            
+            <td><%= r.content %></td>
+            <td><%= r.date_posted %></td>
+            <td>
+               <% if (r.user == current_user) %>
+                  <%= link_to 'SHOW', comment_reply_path(r.comment, r) %>|
+                  <%= link_to 'EDIT', edit_comment_reply_path(r.comment, r)%>|
+                  <%= link_to 'DELETE', [r.comment, r], :confirm => 'Are you sure?', :method => :delete %>
+                  <% else %>
+               <%= link_to 'SHOW' %>
+  
+              <%end %>
+            </td>
+          </tr>
+        <% end %>
+
+			</tbody>
+
+		</table>
+		
+
+		</div>
+
+</div>

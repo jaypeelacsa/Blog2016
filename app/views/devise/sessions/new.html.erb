@@ -1,0 +1,39 @@
+<div class="ui center aligned segment">
+
+
+		<center><h1>Log in</h1><br><br></center>
+
+		<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+		  <div class="ui form">
+
+
+		  				<div class="field">
+                  		  <%= f.input :email, required: false, autofocus: true %>
+                  		 </div>
+
+	                  	<div class="field">
+	                  		  <%= f.input :password, required: false %>
+	                  		 </div>
+
+	                 <div class="field">
+	               	   <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+	               	 </div>
+	               	 <div class="field">
+	               	 	<%= link_to "Sign in with Facebook", "/auth/facebook/", id: "sign_in"%>
+	               	 </div>
+			           	                  		  
+             
+						<div class="field">            
+                    <button class="ui basic button">
+                    <i class="sign in icon"></i>
+                      LOG IN</button>
+           			 </div>
+
+
+					<% end %>
+
+					<%= render "devise/shared/links" %>
+		
+
+		</div>
+</div>

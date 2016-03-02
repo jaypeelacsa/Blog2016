@@ -1,0 +1,36 @@
+<div class="ui segment">
+	<center><h1>Category List</h1></center>
+
+	<br><br>
+		<a href="/categories/new">
+		<button class="ui basic button">
+		  New Category
+		</button>
+		</a>
+		<br>
+		<br>
+
+	<table class="ui selectable celled table">
+
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @categories.each do |c| %>
+				<tr>
+					<td><%= c.name %></td>
+					<td>
+						<%= link_to "SHOW", category_path(c.id), class: "ui basic button" %>
+						<%= link_to "EDIT", edit_category_path(c.id), class: "ui basic button" %>
+						<%= link_to "DELETE", category_path(c.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "ui basic button" %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+
+	</table>
+
+</div>

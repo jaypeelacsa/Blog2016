@@ -1,0 +1,10 @@
+<%= simple_form_for @category, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |f| %>
+	<form>
+		<div  class="form-group">
+			<%= f.input :name %>
+		</div>
+		<%= f.hidden_field :user_id, value: current_user.id %>
+		
+		<button class="btn btn-primary">SAVE</button>
+	</form>
+<% end %>

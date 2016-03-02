@@ -1,0 +1,15 @@
+<%= form_for([@reply.comment, @reply]) do |r| %>
+  
+  <div class="field">
+    <%= r.label :date_posted %><br />
+    <%= r.date_select :date_posted %>
+  </div>
+  <div class="field">
+    <%= r.label "Reply" %><br />
+    <%= r.text_area :content %>
+    <%= r.hidden_field :user_id, value: current_user.id %>
+  </div>
+  <div class="actions">
+    <%= r.submit %>
+  </div>
+<% end %>

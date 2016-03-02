@@ -1,0 +1,29 @@
+<div class="ui segment">
+
+		<div class="panel panel-default">
+		<table class="ui table">
+			<thead>
+
+				<tr>
+					<td colspan="3"><b><%= @reply.content %></b></td>
+				</tr>
+
+				<tr>
+					<td colspan="3"><%= @reply.date_posted %></td>
+				</tr>
+
+				<tr><td><%= link_to 'Back', comment_replies_path(@reply.comment) %></td></tr>
+
+			</thead>
+
+
+			<tbody>
+	
+			</tbody>
+
+		</table>
+		
+
+		</div>
+
+</div>
