@@ -1,58 +1,24 @@
 <div class="ui segment">
-
-		<div class="panel panel-default">
-		<table class="ui table">
-			<thead>
-				<tr>
-					<td colspan="3"><center><b><h1><%= @post.title%></h1></b></center></td>
-				</tr>
-
-				<tr>
-					<td colspan="3"><b><%= @post.category.name%></b></td>
-				</tr>
-
-				<tr>
-					<td colspan="3"><%= @post.date_posted%></td>
-				</tr>
-
-				<tr>
-					<td colspan="3"><p text-align="justified"><%= @post.content%><p></td>
-				</tr>
-
-				<tr>
-					<td colspan="3"><%= link_to 'Comment', new_post_comment_path(@post) %>
-					</td>
-				</tr>
-				<tr>
-					<td><center><b>Comment</b></center></td>
-					<td><center><b>Date Posted</b></center></td>
-					<td><center><b>Actions</b></center></td>
-				</tr>
-			</thead>
-
-
-			<tbody>
-				        <% @comments.each do |comment| %>
-          <tr>
-          	<td><%= comment.user_comment %></td>
-            <td><%= comment.date_posted %></td>
-            <td>
-              <% if (comment.user == current_user) %>
-                  <%= link_to 'SHOW', post_comment_path(comment.post, comment) %>|
-                  <%= link_to 'EDIT', edit_post_comment_path(comment.post, comment) %>|
-                  <%= link_to 'DELETE', [comment.post, comment], :confirm => 'Are you sure?', :method => :delete%>
-                  <% else %>
-              <%= link_to 'SHOW', [comment.post, comment] %>
-              <%end %>
-            </td>
-          </tr>
-        <% end %>
-			</tbody>
-			</tbody>
-
-		</table>
-
-
-		</div>
-
+  <div class="ui top attached tabular menu">
+    <a class="active item" data-tab="first">Details</a>
+    <a class="item" data-tab="second">Comments</a>
+  </div>
+  <div class="ui bottom attached active tab segment" data-tab="first">
+    <h1><%= @post.title%><small><%= @post.category.name%></small></h1>
+    <i><%= @post.date_posted%></i>
+    <p text-align="justified"><%= @post.content%><p>
+  </div>
+  <div class="ui bottom attached tab segment" data-tab="second">
+    <%= link_to "Add New Comment", new_post_comment_path(@post.id) %> 
+  </div>
+  <div class="ui segment">
+   <!--  <% @comments.each do |c| %>
+      <%= c.user_comment %>
+    <% end %> -->
+  </div>  
+  
 </div>
+
+<script>
+  $('.menu .item').tab();
+</script>

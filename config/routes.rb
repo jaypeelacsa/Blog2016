@@ -6,16 +6,13 @@ Rails.application.routes.draw do
 
 
 	  resources :posts do
-		resources :comments, module: 'post'
+		  resources :comments, module: "posts"
 	  end
 
-	  resources :comments do
+	  resources :comments
 	 	resources :replies
-	  end
-
-
-	  
-	  get 'auth/:provider/callback', to: 'sessions#create'
+	 
+	get 'auth/:provider/callback', to: 'sessions#create'
 	get 'logout', to: 'sessions#destroy'
 
   end

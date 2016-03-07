@@ -12,8 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//=require bootstrap
-//=require semantic-ui
-//=require facebookMagic
+//= require bootstrap
+//= require semantic-ui
+//= require facebookMagic
+//= require cocoon
 
 
