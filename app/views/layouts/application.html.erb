@@ -5,14 +5,23 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
-<div class="container">
+	<img src="/assets/logo.jpg" style="height: 70px; width: 150px; position: absolute; left: 8%;"></img>
+	<h1 style="position: absolute; left: 20%; top: -1%; font-size: 200%;">THE KWEK REPUBLIC</h1><br><br><br><br>
+	<div class="container">
+		<%= render partial: "shared/navigation"%>
+		<%= yield %>
+	</div>
 
-	<% if user_signed_in? %>
-	<%= render partial: "shared/navigation"%>
-	<% end %>
-	<%= yield %>
-</div>
 </body>
 </html>
+
+
+
+<style>
+	body{
+		 background: url(/assets/back.png); padding: 0%; padding-bottom: 5%;
+	}
+</style>

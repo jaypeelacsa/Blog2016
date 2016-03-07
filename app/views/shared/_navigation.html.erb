@@ -1,28 +1,15 @@
-<div class="ui secondary pointing menu">
-
-
-  <a class="item" href="/posts">
-   Home
-  </a>
-  <a class="item" href="/categories">
-    Category
-  </a>
-
-
-   <div class="right menu">
-      <a class="ui item">
-      <% if user_signed_in? %>
-      WELCOME:<%= current_user.email %>
-        <%= link_to "Sign Out", destroy_user_session_path,  method: :delete, data: { Confirm: "Are you sure?" },  class: "item" %>
-        <% else %>
-        
-
-        <a class="item" href="/users/sign_in">
-          Log In
-          </a>
-     
-         
-      <% end %>
+<div class="ui menu" style="font-size: 110%;">
+  <a class="item" href="/posts" id="home">Home</a>
+  <a class="item" href="/categories">Category</a>
+  <a class="item" href="/posts/new">New Posts</a>
+  <div class="right menu">
+    <a class="ui item">
+    <% if user_signed_in? %>
+      <i class="user icon"></i><%= current_user.email %>
+      <%= link_to "Sign Out", destroy_user_session_path,  method: :delete, data: { Confirm: "Are you sure?" },  class: "item" %>
+    <% else %>
+    <a class="item" href="/users/sign_in">Log In</a>
+    <% end %>
     </a>
   </div>
 </div>

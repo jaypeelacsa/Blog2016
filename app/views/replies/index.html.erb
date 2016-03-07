@@ -1,11 +1,8 @@
 <div class="ui segment">
-    <center><h1>Replies Lists</h1></center>
-
-<%= link_to 'New Reply', new_comment_reply_path, class: "ui basic button" %>
-
-        <div class="panel panel-default">
+  <center><h1>Replies Lists</h1></center>
+  <%= link_to 'New Reply', new_comment_reply_path, class: "ui basic button" %>
+  <div class="panel panel-default">
     <table class="ui selectable celled table">
-
       <thead>
         <tr>
           <th>Date Posted</th>
@@ -13,27 +10,24 @@
           <th>Actions</th>
         </tr>
       </thead>
+
       <tbody>
         <% @replies.each do |r| %>
-          <tr>
-            <td><%= r.date_posted %></td>
-            <td><%= r.content %></td>
-            <td>
-               <% if (r.user == current_user) %>
-                  <%= link_to 'SHOW', comment_reply_path(r.comment, r) %>|
-                  <%= link_to 'EDIT', edit_comment_reply_path(r.comment, r)%>|
-                  <%= link_to 'DELETE', [r.comment, r], :confirm => 'Are you sure?', :method => :delete %>
-                  <% else %>
-               <%= link_to 'SHOW' %>
-  
-              <%end %>
-            </td>
-          </tr>
+        <tr>
+          <td><%= r.date_posted %></td>
+          <td><%= r.content %></td>
+          <td>
+            <% if (r.user == current_user) %>
+              <%= link_to 'SHOW', comment_reply_path(r.comment, r) %>|
+              <%= link_to 'EDIT', edit_comment_reply_path(r.comment, r)%>|
+              <%= link_to 'DELETE', [r.comment, r], :confirm => 'Are you sure?', :method => :delete %>
+            <% else %>
+              <%= link_to 'SHOW' %>
+            <%end %>
+          </td>
+        </tr>
         <% end %>
       </tbody>
-
     </table>
-
-    </div>
-
+  </div>
 </div>
