@@ -1,0 +1,37 @@
+<div class="ui tall stacked segment" id="div1">
+  <center><b><h1><%= @comment.content%></h1></b></center>
+
+  <div class="ui fitted divider"></div>
+  <b><p>Date Posted:<%= @comment.date_posted%></b></p>
+
+  <div class="ui fitted divider"></div>
+  <%= link_to 'New Reply', new_post_comment_reply_path(@comment) %>
+
+</div>
+
+<div id="div2" class="ui tall stacked segment">
+	<center><h2>Recent Posts</h2></center><br>
+	<div class="ui fitted divider"></div>
+	<% @posts.each do |p| %>
+	<ul>
+		<li><h4><%= link_to p.title, post_path(p.id) %></h3></li>	
+	</ul>
+	<% end %>
+</div>
+
+
+
+<style>
+	#parag{
+		text-align:justify; text-indent: 5%;
+	}
+
+	#div1{
+		width: 70%; float:left; padding-bottom: 3%;
+	}
+
+	#div2{
+		width: 29%; float:left; padding-bottom: 3%; margin-left: 1%; padding: 2%;
+	}
+
+</style>

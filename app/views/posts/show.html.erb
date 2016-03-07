@@ -1,24 +1,75 @@
-<div class="ui segment">
-  <div class="ui top attached tabular menu">
-    <a class="active item" data-tab="first">Details</a>
-    <a class="item" data-tab="second">Comments</a>
-  </div>
-  <div class="ui bottom attached active tab segment" data-tab="first">
-    <h1><%= @post.title%><small><%= @post.category.name%></small></h1>
-    <i><%= @post.date_posted%></i>
-    <p text-align="justified"><%= @post.content%><p>
-  </div>
-  <div class="ui bottom attached tab segment" data-tab="second">
-    <%= link_to "Add New Comment", new_post_comment_path(@post.id) %> 
-  </div>
-  <div class="ui segment">
-   <!--  <% @comments.each do |c| %>
-      <%= c.user_comment %>
-    <% end %> -->
-  </div>  
+<div class="ui tall stacked segment" id="div1">
+  <center><b><h1><%= @post.title%></h1></b></center>
+
+  <div class="ui fitted divider"></div>
+  <b><p>Category:<%= @post.category.name%></b></p>
+  <b><p>Date Posted:<%= @post.date_posted%></b></p>
+
+	<% if (@post.user_id == current_user.id) %>
+		<%= link_to "EDIT", edit_post_path(@post.id) %>&nbsp&nbsp
+		<%= link_to "DELETE", post_path(@post.id), data: {:confirm => "Are you sure?"}, :method => :delete %>
+		<% else %>
+	<% end %>
+
+  <div class="ui fitted divider"></div>
+  <p id="parag"><%= @post.content%><p>
+
+  <div class="ui fitted divider"></div>
+  <%= link_to 'New Comment', new_post_comment_path(@post) %>
   
+  <div class="ui fitted divider"></div>
+  <table class="ui table">
+			<thead>
+			</thead>
+
+			<tbody>
+	      <% @comments.each do |comment| %>
+	      <tr>
+        	<td><%= comment.content %></td>
+          <td><%= comment.date_posted %></td>
+          <td>
+            <% if (comment.user_id == current_user.id) %>
+              <%= link_to 'SHOW', post_comment_path(comment.post, comment) %>|
+              <%= link_to 'EDIT', edit_post_comment_path(comment.post, comment) %>|
+              <%= link_to 'DELETE', [comment.post, comment], :confirm => 'Are you sure?', :method => :delete%>
+              <% else %>
+            		<%= link_to 'SHOW', [comment.post, comment] %>
+            <%end %>
+          </td>
+		    </tr>
+		    <% end %>
+
+				</tbody>
+				</tbody>
+
+		</table>
+
 </div>
 
-<script>
-  $('.menu .item').tab();
-</script>
+<div id="div2" class="ui tall stacked segment">
+	<center><h2>Recent Posts</h2></center><br>
+	<div class="ui fitted divider"></div>
+	<% @posts.each do |p| %>
+	<ul>
+		<li><h4><%= link_to p.title, post_path(p.id) %></h3></li>	
+	</ul>
+	<% end %>
+</div>
+
+
+
+<style>
+	#parag{
+		text-align:justify; text-indent: 5%;
+	}
+
+	#div1{
+		width: 70%; float:left; padding-bottom: 3%;
+	}
+
+	#div2{
+		width: 29%; float:left; padding-bottom: 3%; margin-left: 1%; padding: 2%;
+	}
+
+</style>
+>>>>>>> afbc708057b584af9152f5855d498205da64b253

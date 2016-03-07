@@ -9,15 +9,21 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+<<<<<<< HEAD
 
+=======
+>>>>>>> afbc708057b584af9152f5855d498205da64b253
 gem 'devise'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.3.5.1'
 gem 'bootstrap-datepicker-rails'
 gem 'simple_form'
 gem 'semantic-ui-sass'
 gem 'omniauth-facebook'
+<<<<<<< HEAD
 gem 'cocoon'
 
+=======
+>>>>>>> afbc708057b584af9152f5855d498205da64b253
 group :development, :test do
   gem 'byebug'
 end

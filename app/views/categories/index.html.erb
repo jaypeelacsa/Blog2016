@@ -1,36 +1,53 @@
-<div class="ui segment">
+<div class="ui tall stacked segment" id="container1">
 	<center><h1>Category List</h1></center>
 
-	<br><br>
-		<a href="/categories/new">
-		<button class="ui basic button">
-		  New Category
-		</button>
-		</a>
-		<br>
-		<br>
+	<a href="/categories/new">
+		<button class="ui basic button">New Category</button>
+	</a>
 
 	<table class="ui selectable celled table">
-
 		<thead>
 			<tr>
 				<th>Title</th>
 				<th>Actions</th>
 			</tr>
 		</thead>
+
 		<tbody>
 			<% @categories.each do |c| %>
-				<tr>
+			<tr>
+				<% if (c.user_id == current_user.id) %>
 					<td><%= c.name %></td>
 					<td>
 						<%= link_to "SHOW", category_path(c.id), class: "ui basic button" %>
 						<%= link_to "EDIT", edit_category_path(c.id), class: "ui basic button" %>
 						<%= link_to "DELETE", category_path(c.id), data: {:confirm => "Are you sure?"}, :method => :delete, class: "ui basic button" %>
 					</td>
+					<% else %>
+				<% end %>
 				</tr>
 			<% end %>
 		</tbody>
 
 	</table>
-
 </div>
+
+<div id="container2" class="ui tall stacked segment">
+	<center><h2>Recent Posts</h2></center><br>
+	<div class="ui fitted divider"></div>
+	<% @posts.each do |p| %>
+	<ul>
+		<li><h4><%= link_to p.title, post_path(p.id) %></h3></li>	
+	</ul>
+	<% end %>
+</div>
+
+<style>
+	#container1{
+		width: 70%; float:left; padding-bottom: 3%;
+	}
+
+	#container2{
+		width: 29%; float:left; padding-bottom: 3%; margin-left: 1%; padding: 2%;
+	}
+</style>

@@ -1,8 +1,7 @@
 <%= simple_form_for @post, defaults: { wrapper_html: { class: 'form-group' }, input_html: {class: 'form-control'} }, html: { multipart: true, novalidate: true } do |f| %>
-	<form>
-
+	<form class="ui form">
 		<div  class="form-group">
-			<%= f.association :category, as: :select, collection: Category.all %>
+			<%= f.association :category, as: :select, collection: Category.where(user_id: current_user.id) %>
 		</div>
 
 		<div  class="form-group">
@@ -17,12 +16,9 @@
 			<%= f.input :content %>
 		</div>
 
-		 <%= f.hidden_field :user_id, value: current_user.id %>
-
-
-
+		<%= f.hidden_field :user_id, value: current_user.id %>
 		<%= f.hidden_field :id , :value => @post.id %>
-
 		<button class="btn btn-primary">SAVE</button>
+
 	</form>
 <% end %>

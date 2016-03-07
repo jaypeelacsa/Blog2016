@@ -1,5 +1,24 @@
-<div class="ui segment">
+<div class="ui tall stacked segment"  id="div1">
 	<center><h1>Edit Category</h1></center>
-
 	<%= render partial: "form" %>
 </div>
+
+<div class="ui tall stacked segment" id="div2">
+	<center><h2>Recent Posts</h2></center><br>
+	<div class="ui fitted divider"></div>
+	<% @posts.each do |p| %>
+	<ul>
+		<li><h4><%= link_to p.title, post_path(p.id) %></h3></li>	
+	</ul>
+	<% end %>
+</div>
+
+<style>
+	#div1{
+		width: 70%; float:left; padding-bottom: 3%;
+	}
+
+	#div2{
+		width: 29%; float:left; padding-bottom: 3%; margin-left: 1%; padding: 2%;
+	}
+</style>

@@ -9,7 +9,7 @@ class PostsController < ApplicationController
 
 	def new
 		@post =Post.new
-
+		@posts = Post.all
 	end
 
 	def create
@@ -24,19 +24,17 @@ class PostsController < ApplicationController
 	def show
 		@post = Post.find(params[:id])
 		@comments = Comment.where(post_id: @post.id)
-    @comment = Comment.new
-    @comments =Comment.where(post_id: @post.id)
-    
 	end
 
 	def edit
 		@post = Post.find(params[:id])
+		@posts = Post.all
 	end
 
 	def update
 		@post = Post.find(params[:id])
 		if @post.update_attributes(post_params)
-			redirect_to posts_path
+			redirect_to post_path
 		else
 			render "edit"
 		end
@@ -51,5 +49,4 @@ class PostsController < ApplicationController
 	def post_params
 		params.require(:post).permit!
 	end
-
 end

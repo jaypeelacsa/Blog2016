@@ -1,44 +1,53 @@
-<div class="ui segment">
-		<center><h1>Posts Collection</h1></center>
+<div id="container1" class="ui segment">
 
-		<br><br>
-		<a href="/posts/new">
-		<button class="ui basic button">
-		  New Posts
-		</button>
-		</a>
-		<br>
-		<br>
 
-		<div class="panel panel-default">
-		<table class="ui selectable celled table">
-
-			<thead>
-				<tr>
-					<th>Title</th>
-					<th>Category</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @posts.each do |p| %>
-					<tr>
-						<td><%= p.title %></td>
-						<td><%= p.try(:category).try(:name) %></td>
-						<td>
-							<% if (p.user == current_user) %>
-								<%= link_to "SHOW", post_path(p.id) %>|
-								<%= link_to "EDIT", edit_post_path(p.id) %>|
-								<%= link_to "DELETE", post_path(p.id), data: {:confirm => "Are you sure?"}, :method => :delete %>
-							<% else %>
-								<%= link_to "SHOW", post_path(p.id) %>
-							<% end %>
-						</td>
-					</tr>
-				<% end %>
-			</tbody>
-
-		</table>
-
-		</div>
+	<% @posts.each do |p| %>
+	<table id="mytable" class = "ui tall stacked segment">	
+		<th colspan="2"><h3><%= p.title %></h3></th>	
+		<tr>
+			<td rowspan="2"><img src="assets/kwek.jpg"></img></td>
+		</tr>
+		<tr>
+			<td colspan="1"><p><%= truncate p.content, length: 290 %><%= link_to "Read More", post_path(p.id) %></p>
+			</td>	
+		</tr>
+	</table>
+	<% end %>
 </div>
+
+<div id="container2" class="ui tall stacked segment">
+	<center><h2>Recent Posts</h2></center><br>
+	<div class="ui fitted divider"></div>
+	<% @posts.each do |p| %>
+	<ul>
+		<li><h4><%= link_to p.title, post_path(p.id) %></h3></li>	
+	</ul>
+	<% end %>
+</div>
+
+
+<style>
+	#mytable{
+		margin-left: 5%; margin-top: 2%; width: 90%; float:left; z-index: 1px; max-height: 20%;
+	}
+	
+	h3{
+		padding-top: 3%; padding-left: 3%;
+	}	
+
+	img{
+		height: 100px; width: 150px;
+	}
+
+	p{
+		text-align: justify; padding: 3%; 
+	}
+
+	#container1{
+		width: 70%; float:left; padding-bottom: 3%;
+	}
+
+	#container2{
+		width: 29%; float:left; padding-bottom: 3%; margin-left: 1%; padding: 2%;
+	}
+</style>
